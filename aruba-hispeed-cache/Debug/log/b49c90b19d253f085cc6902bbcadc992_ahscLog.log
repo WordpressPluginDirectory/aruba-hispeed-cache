@@ -1,0 +1,11 @@
+2024-06-06T09:33:45+02:00 [DEBUG] : ::ahsc_purge_on_plugin_actions => hook::deactivate_plugin::home::aruba-hispeed-cache/aruba-hispeed-cache.php
+2024-06-06T09:33:45+02:00 [INFO] : purgeAll() => targhet /
+2024-06-06T09:33:45+02:00 [INFO] : _targhet => http://127.0.0.1:8889/purge/
+2024-06-06T09:33:46+02:00 [INFO] : flush_wp_object_cache => flush wp_object_cache with success....
+2024-06-06T09:33:46+02:00 [INFO] : Cache Warmer => Transint warmer non presente presente lo imposto
+2024-06-06T09:33:49+02:00 [DEBUG] : ::ahsc_purge_on_plugin_actions => hook::activated_plugin::home::aruba-hispeed-cache/aruba-hispeed-cache.php
+2024-06-06T09:33:49+02:00 [INFO] : purgeAll() => targhet /
+2024-06-06T09:33:49+02:00 [INFO] : _targhet => http://127.0.0.1:8889/purge/
+2024-06-06T09:33:50+02:00 [INFO] : flush_wp_object_cache => flush wp_object_cache with success....
+2024-06-06T09:33:50+02:00 [INFO] : Cache Warmer => Transint warmer non presente presente lo imposto
+2024-06-06T09:33:50+02:00 [DEBUG] : ::ahsc_delete_transient => hook::transient::delete
