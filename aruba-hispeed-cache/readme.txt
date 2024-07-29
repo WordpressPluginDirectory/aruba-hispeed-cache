@@ -1,11 +1,9 @@
 === Aruba HiSpeed Cache ===
 
 Contributors: arubait, arubadev, arubasupport
-Tags: HiSpeed Cache, Aruba, cache, caching, performance
-Requires at least: 5.4
-Tested up to: 6.4
-Requires PHP: 5.6
-Stable tag: 2.0.9
+Tags: Aruba, cache, performance, pagespeed, optimize
+Tested up to: 6.6
+Stable tag: 2.0.12
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -65,10 +63,28 @@ wordpress_no_cache, comment_author, wordpress_logged_in_, yith_wcwl_products, wp
 
 == Screenshots ==
 
-1. General Settings enabled
-2. General Settings disabled
+1. General Settings Disabled
+2. General Settings Enabled
 
 == Changelog ==
+
+= 2.0.12 =
+* Various minor bug fixes.
+* Tested up WordPress 6.6
+
+= 2.0.11 =
+* Various minor bug fixes.
+
+= 2.0.10 =
+* Various minor bug fixes.
+
+= 2.0.9 =
+* Code Review 
+* Added Static Files Optimization
+* Various Minor Bug Fixing
+
+= 2.0.8 =
+* Tested up WordPress 6.5
 
 = 2.0.7 =
 * Various minor bug fixes.
@@ -109,7 +125,7 @@ wordpress_no_cache, comment_author, wordpress_logged_in_, yith_wcwl_products, wp
 
 = 1.2.4 =
 * Removed 'heartbeat' calls in the frontend and limited admin-side calls to every 120 seconds;
-* Set testst up Wp 6.2 version;
+* Set tested up WP 6.2 version;
 
 = 1.2.3 =
 * Add x-aruba-cache header in site health
@@ -155,6 +171,6 @@ wordpress_no_cache, comment_author, wordpress_logged_in_, yith_wcwl_products, wp
 
 == Upgrade Notice ==
 
-= 2.0.7 =
+= 2.0.12 =
 * Various minor bug fixes.
-* The debugging and logging code base was modified to be plug-n-play. solved CVE-2023-44983, thanks Patchstack Alliance
+* Tested up WordPress 6.6
