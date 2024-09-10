@@ -3,6 +3,8 @@ const AHSC_CORE = array(
 	'plugin_name' => 'aruba-hispeed-cache',
     'debug'=>WP_DEBUG
 );
+//var_dump(AHSC_CORE);
+
 $file=realpath(dirname(__FILE__)."/..")."/".AHSC_CORE['plugin_name'].".php";
 
 define( "AHSC_REQUIREMENTS", array(
@@ -31,10 +33,14 @@ const AHSC_OPTIONS_LIST = array(
 	'ahsc_purge_page_on_deleted_comment' =>  true,
 	'ahsc_cache_warmer' =>true,
 	'ahsc_static_cache'=>true,
+	'ahsc_dns_preconnect'=>false,
+	'ahsc_dns_preconnect_domains'=>'',
+	'ahsc_xmlrpc_status'=>true
+
 );
 
 define( "AHSC_CONSTANT", array(
-	'ARUBA_HISPEED_CACHE_VERSION'      => '2.0.14',
+	'ARUBA_HISPEED_CACHE_VERSION'      => '2.0.17',
 	'ARUBA_HISPEED_CACHE_PLUGIN'       => true,
 	'ARUBA_HISPEED_CACHE_FILE'         => $file,
 	'ARUBA_HISPEED_CACHE_BASEPATH'     => \plugin_dir_path( $file ),
@@ -44,7 +50,6 @@ define( "AHSC_CONSTANT", array(
 	'HOME_URL'                         => \get_home_url( null, '/' ),
 	'ARUBA_HISPEED_CACHE_OPTIONS'      => (get_site_option( 'aruba_hispeed_cache_options' ))?get_site_option( 'aruba_hispeed_cache_options' ):AHSC_OPTIONS_LIST,
 ) );
-
 
 const AHSC_OPTIONS_LIST_DEFAULT = array(
 	'ahsc_enable_purge' => array('default'=>true),
@@ -58,7 +63,10 @@ const AHSC_OPTIONS_LIST_DEFAULT = array(
 	'ahsc_purge_page_on_new_comment' =>  array('default'=>true),
 	'ahsc_purge_page_on_deleted_comment' =>   array('default'=>true),
 	'ahsc_cache_warmer' => array('default'=>true),
-	'ahsc_static_cache' => array('default'=>true)
+	'ahsc_static_cache' => array('default'=>true),
+	'ahsc_dns_preconnect' => array('default'=>false),
+	'ahsc_dns_preconnect_domains'=>array('default'=>''),
+	'ahsc_xmlrpc_status'=>array('default'=>true)
 );
 
 
