@@ -12,7 +12,12 @@ class AHSC_Settings extends \AHSC\Pages\AHSC_Page {
 				esc_html__( 'Sorry, you need to be an administrator to use HiSpeed Cache.', 'aruba-hispeed-cache' )
 			);
 		}
-		ahsc_save_options();
+		if(isset( $_POST['ahsc_reset_save'] )){
+		  ahsc_reset_options();
+		}else{
+		  ahsc_save_options();
+		}
+
 		$this->add_fields();
 
 		include_once AHSC_CONSTANT['ARUBA_HISPEED_CACHE_BASEPATH'] . 'admin' . DIRECTORY_SEPARATOR .'pages'.DIRECTORY_SEPARATOR .'views'.DIRECTORY_SEPARATOR .  'admin-settings.php';
@@ -189,6 +194,25 @@ class AHSC_Settings extends \AHSC\Pages\AHSC_Page {
 			'class' => ( $is_hidden ) ? 'hidden' : '',
 		);
 
+		$this->fields['sections']['general']['apc']['settings_tittle'] = array(
+			'title' => wp_kses( __( 'Apc', 'aruba-hispeed-cache' ), array( 'strong' => array() ) ) ,
+			'type'  => 'title',
+			'class' => ( $is_hidden ) ? 'hidden' : '',
+		);
+		$this->fields['sections']['general']['apc'] = array(
+			'ids'   => array( 'ahsc_apc' ),
+			'name'  => wp_kses( __( 'Object cache', 'aruba-hispeed-cache' ), array( 'strong' => array() ) ) ,
+			'class' => ( $is_hidden ) ? 'hidden' : '',
+		);
+		$this->fields['ahsc_apc'] = array(
+			'name'    => "<strong>".wp_kses( __( 'Enable object cache', 'aruba-hispeed-cache' ), array( 'strong' => array() ) )."</strong>",
+			'legend' => wp_kses( __( 'Reduces the number of queries made to the database and the related execution times for processing the queries necessary to display the pages, improving site loading performance via APCu.', 'aruba-hispeed-cache' ), array( 'strong' => array(), 'br' => array() ) ),
+			'type'    => 'checkbox',
+			'id'      => 'ahsc_apc',
+			'checked' => \checked( $option[ 'ahsc_apc' ] ?? 0 , 1, false ),
+			'class' => ( $is_hidden ) ? 'hidden' : '',
+		);
+
 		$this->fields['sections']['general']['html_optimizer']['settings_tittle'] = array(
 			'title' => wp_kses( __( 'Optimize HTML code', 'aruba-hispeed-cache' ), array( 'strong' => array() ) ) ,
 			'type'  => 'title',
@@ -267,7 +291,7 @@ class AHSC_Settings extends \AHSC\Pages\AHSC_Page {
 		);
 		$this->fields['sections']['general']['xmlrpc_status'] = array(
 			'ids'   => array( 'ahsc_xmlrpc_status' ),
-			'name'  => wp_kses( __( 'XML-RPC', 'aruba-hispeed-cache' ), array( 'strong' => array() ) ) ,
+			'name'  => wp_kses( __( 'XML-RPC Status:', 'aruba-hispeed-cache' ), array( 'strong' => array() ) ) ,
 			'class' =>( $is_hidden ) ? 'hidden' : '',
 		);
 		$this->fields['ahsc_xmlrpc_status'] = array(
@@ -278,6 +302,41 @@ class AHSC_Settings extends \AHSC\Pages\AHSC_Page {
 			'checked' => \checked( $option['ahsc_xmlrpc_status'] ?? 0 , 1, false ),
 			'class' =>( $is_hidden ) ? 'hidden' : '',
 		);
+
+
+		$this->fields['sections']['general']['cron_status']['settings_tittle'] = array(
+			'title' => wp_kses( __( 'WP-Cron Status:', 'aruba-hispeed-cache' ), array( 'strong' => array() ) ) ,
+			'type'  => 'title',
+			'class' =>( $is_hidden ) ? 'hidden' : '',
+		);
+		$this->fields['sections']['general']['cron_status'] = array(
+			'ids'   => array( 'ahsc_cron_status','ahsc_cron_time' ),
+			'name'  => wp_kses( __( 'WP-Cron status', 'aruba-hispeed-cache' ), array( 'strong' => array() ) ) ,
+			'class' =>( $is_hidden ) ? 'hidden' : '',
+		);
+
+		$cron_val=(wp_validate_boolean($option['ahsc_cron_status'])===false )?true:false;
+		$this->fields['ahsc_cron_status'] = array(
+			'name'    => "<strong>".wp_kses( __( 'WP-Cron', 'aruba-hispeed-cache' ), array( 'strong' => array() ) )."</strong>",
+			'legend' => wp_kses( __( 'Indicates the status of wp cron.', 'aruba-hispeed-cache' ), array( 'strong' => array(), 'br' => array() ) ),
+			'type'    => 'checkbox',
+			'id'      => 'ahsc_cron_status',
+			'checked' => \checked(  $cron_val?? 0 , 1, false ),
+			'class' =>( $is_hidden ) ? 'hidden' : '',
+		);
+;
+		$this->fields['ahsc_cron_time'] = array(
+
+			'name'    => "<strong>".wp_kses( __( 'WP-Cron Interval', 'aruba-hispeed-cache' ), array( 'strong' => array() ) )."</strong>",
+			'legend' => wp_kses( __( 'indicates the time elapsed between one execution and another.', 'aruba-hispeed-cache' ), array( 'strong' => array(), 'br' => array() ) ),
+			'type'    => 'select',
+			'id'      => 'ahsc_cron_time',
+			'options'=>array('5'=>'300','15'=>'900','60'=>'3600','120'=>'7200','180'=>'10800'),
+			'class' =>( $is_hidden ) ? 'hidden' : '',
+
+		);
+
+
 
 
 	}
