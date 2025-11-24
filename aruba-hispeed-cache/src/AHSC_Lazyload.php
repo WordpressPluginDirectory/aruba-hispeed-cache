@@ -32,6 +32,7 @@ function ahsc_wp_lazy_loading_add_attribute_to_attachment_image( $attr ) {
 
 function ahsc_wp_lazy_loading_enabled( $tag_name, $context ) {
 	$default = ( 'img' === $tag_name );
+	//@phpcs:ignore
 	return (bool) apply_filters( 'wp_lazy_loading_enabled', $default, $tag_name, $context );
 }
 
@@ -88,7 +89,7 @@ function ahsc_wp_filter_content_tags( $content, $context = null ) {
 }
 
 function ahsc_wp_img_tag_add_loading_attr( $image, $context ) {
-
+    //@phpcs:ignore
 	$value = apply_filters( 'wp_img_tag_add_loading_attr', 'lazy', $image, $context );
 
 	if ( $value ) {
@@ -102,7 +103,7 @@ function ahsc_wp_img_tag_add_loading_attr( $image, $context ) {
 }
 
 function ahsc_wp_img_tag_add_srcset_and_sizes_attr( $image, $context, $attachment_id ) {
-
+//@phpcs:ignore
 	$add = apply_filters( 'wp_img_tag_add_srcset_and_sizes_attr', true, $image, $context, $attachment_id );
 
 	if ( true === $add ) {

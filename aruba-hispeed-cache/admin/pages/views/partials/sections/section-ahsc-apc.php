@@ -28,7 +28,7 @@
                         ?>
                     </span>
 					<?php
-					  $c_opt=get_site_option(AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS_NAME']);
+					  $ahsc_c_opt=get_site_option(AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS_NAME']);
                       ?>
 					<label class="switch" style="float:right">
 						<input
@@ -36,7 +36,7 @@
 							value="1"
 							name="ahsc_apc"
 							id="ahsc_apc"
-							<?php echo esc_html( ($c_opt['ahsc_apc'])?"checked":""); ?>
+							<?php echo esc_html( ($ahsc_c_opt['ahsc_apc'])?"checked":""); ?>
 						/>
 
 						<span class="slider round"></span>
