@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 global $pagenow;
 $ahsc_allowed_cases = array( 'publish', 'future', 'trash' );
 $ahsc_target=array();
@@ -52,32 +55,43 @@ if('nav-menus.php' !== $pagenow){
  * @return void
  */
  function ahsc_post_updated($post_ID, $data) {
-	/**
-	 * I check whether the cleaning transient "ahsc_do_purge_deferred" is present in case I inhibit this action.
-	 */
-	$do_purge = ahsc_has_transient( 'ahsc_do_purge_deferred' );
 
-	if ( $do_purge ) {
-		return;
-	}
-	/**
-	 * Disable the purge action if the transient 'ahsc_is_purged' is set.
-	 */
-	if ( ahsc_has_transient( 'ahsc_is_purged' ) ) {
-		return;
-	}
-	 $cleaner =new \ArubaSPA\HiSpeedCache\Purger\WpPurger();
-	 $cleaner->setPurger( AHSC_PURGER );
-	/**
-	 * If home page cleaning is set, there is no point in going any further, the entire site cache will be cleaned.
-	 */
+	 $ahsc_ptlist=array('post','page','product','shop_order','shop_coupon','shop_webhook','attachment','nav_menu_item','wp_template','wp_template_part');
+	 $ahsc_cpt=get_post_type($post_ID);
+	/* if(class_exists('ArubaSPA\HiSpeedCache\Debug\Logger')) {
+		 AHSC_log( "list:" . implode(",",$ahsc_ptlist) . " - current:" . $ahsc_cpt ." ==".var_export(array_search($ahsc_cpt,$ahsc_ptlist),true));
+	 }*/
+	 if(array_search($ahsc_cpt,$ahsc_ptlist)!==false){
+		 /**
+		  * I check whether the cleaning transient "ahsc_do_purge_deferred" is present in case I inhibit this action.
+		  */
+		$do_purge = ahsc_has_transient( 'ahsc_do_purge_deferred' );
 
-	if(class_exists('ArubaSPA\HiSpeedCache\Debug\Logger')){
-		// Logger.
-		AHSC_log( 'hook::post_updated::home', __NAMESPACE__ . '::' . __FUNCTION__, 'debug' );
-		// Logger.
+		if ( $do_purge ) {
+			return;
+		}
+		/**
+		 * Disable the purge action if the transient 'ahsc_is_purged' is set.
+		 */
+		if ( ahsc_has_transient( 'ahsc_is_purged' ) ) {
+			return;
+		}
+
+		 //$cleaner =new \ArubaSPA\HiSpeedCache\Purger\WpPurger();
+		 //$cleaner->setPurger( AHSC_PURGER );
+
+		/**
+		 * If home page cleaning is set, there is no point in going any further, the entire site cache will be cleaned.
+		 */
+
+		/*if(class_exists('ArubaSPA\HiSpeedCache\Debug\Logger')){
+			// Logger.
+			AHSC_log( 'hook::post_updated::home', __NAMESPACE__ . '::' . __FUNCTION__, 'debug' );
+			// Logger.
+		}*/
+		//$cleaner->purgeAll();
+		 ahsc_set_transient( 'ahsc_do_purge_deferred', \time(), MINUTE_IN_SECONDS );
 	}
-	$cleaner->purgeAll();
 }
 
 /**
@@ -226,7 +240,7 @@ global $ahsc_allowed_cases,$ahsc_is_json,$ahsc_target;
 		if(class_exists('ArubaSPA\HiSpeedCache\Debug\Logger')){
 		// Logger.
 		AHSC_log(
-			'hook::transition_post_status::' . (string) $arg['log_option'] . '::' . $target,
+			'hook::transition_post_status::' . (string) $arg['log_option'] . '::' . $ahsc_target,
 			__NAMESPACE__ . '::' . (string) $arg['log_function'],
 			'debug'
 		);

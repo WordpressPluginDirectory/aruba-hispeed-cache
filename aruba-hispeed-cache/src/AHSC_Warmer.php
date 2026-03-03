@@ -1,9 +1,10 @@
 <?php
-
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 if(isset(AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_cache_warmer']) && AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_cache_warmer']!=="false"){
     \add_action( 'wp_ajax_ahcs_cache_warmer',  'ahsc_cache_warmer_ajax_action' , 100 );
-    \add_action( 'wp_ajax_nopriv_ahcs_cache_warmer', 'ahsc_cache_warmer_ajax_action' , 100 );
+    //\add_action( 'wp_ajax_nopriv_ahcs_cache_warmer', 'ahsc_cache_warmer_ajax_action' , 100 );
 
 	$ahsc_do_purge=get_option('ahsc_do_cache_warmer',false);
 	//$do_purge = ahsc_has_transient( 'ahsc_do_cache_warmer' );
@@ -156,5 +157,6 @@ function ahsc_cache_warmer_ajax_action() {
 	}else{
 		wp_die( wp_json_encode( array( 'esit' => true, 'items' => 'no cache to warming' ) ) );
 	}
+	update_option( 'ahsc_do_cache_warmer', false );
 	//@phpcs:enable
 }

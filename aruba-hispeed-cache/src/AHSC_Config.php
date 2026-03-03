@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 const AHSC_CORE = array(
 	'plugin_name' => 'aruba-hispeed-cache',
     'debug'=>WP_DEBUG

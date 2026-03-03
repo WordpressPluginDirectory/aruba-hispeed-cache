@@ -1,6 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 add_action("wp_ajax_ahsc_check_apc_file", "ahsc_check_apc_file");
-add_action("wp_ajax_nopriv_ahsc_check_apc_file", "ahsc_check_apc_file");
+//add_action("wp_ajax_nopriv_ahsc_check_apc_file", "ahsc_check_apc_file");
 
 function ahsc_check_apc_file() {
 	$target = WP_CONTENT_DIR . '/object-cache.php';
@@ -23,7 +26,7 @@ function ahsc_check_apc_file() {
 }
 
 add_action("wp_ajax_ahsc_create_apc_file", "ahsc_create_apc_file");
-add_action("wp_ajax_nopriv_ahsc_create_apc_file", "ahsc_create_apc_file");
+//add_action("wp_ajax_nopriv_ahsc_create_apc_file", "ahsc_create_apc_file");
 function ahsc_create_apc_file(){
 	if(current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 		$result = array();
@@ -40,7 +43,7 @@ function ahsc_create_apc_file(){
 	die();
 }
 add_action("wp_ajax_ahsc_update_apc_Settings", "ahsc_update_apc_Settings");
-add_action("wp_ajax_nopriv_ahsc_update_apc_Settings", "ahsc_update_apc_Settings");
+//add_action("wp_ajax_nopriv_ahsc_update_apc_Settings", "ahsc_update_apc_Settings");
 function ahsc_update_apc_Settings() {
 	if(current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 		$result            = array();
@@ -55,7 +58,7 @@ function ahsc_update_apc_Settings() {
 
 
 add_action("wp_ajax_ahsc_delete_apc_file", "ahsc_delete_apc_file");
-add_action("wp_ajax_nopriv_ahsc_delete_apc_file", "ahsc_delete_apc_file");
+//add_action("wp_ajax_nopriv_ahsc_delete_apc_file", "ahsc_delete_apc_file");
 function ahsc_delete_apc_file(){
 	if(current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 		$result = array();

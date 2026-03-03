@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <div class="wrap ahsc-wrapper">
 	<div id="ahsc-main">
 

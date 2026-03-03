@@ -1,5 +1,7 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Transforms a wp-config.php file.
  */

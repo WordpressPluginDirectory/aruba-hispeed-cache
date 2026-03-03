@@ -1,5 +1,7 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 if ( isset( AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_lazy_load'] ) &&
       AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_lazy_load'] ) {
 	add_action( 'plugins_loaded', 'ahsc_wp_lazy_loading_initialize_filters', 1 );

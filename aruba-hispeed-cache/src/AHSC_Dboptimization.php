@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 $ahsc_tables=array();
 $ahsc_tables['wp_postmeta']=array(
 	'meta_id_optimized'=>array(
@@ -163,29 +166,61 @@ function AHSC_DBOPT_Optimize(){
 	foreach($ahsc_tables as $table_name=>$index_settings){
 		$pfx=$wpdb->prefix.substr($table_name,'3',strlen($table_name));
 		//$sql="ALTER TABLE {$pfx} ROW_FORMAT=DYNAMIC;";
-		$wpdb->query( $wpdb->prepare("ALTER TABLE %s ROW_FORMAT=DYNAMIC;",array( $pfx) ));//@phpcs:ignore
+		$wpdb->query( $wpdb->prepare("ALTER TABLE %i ROW_FORMAT=DYNAMIC;",array( $pfx) ));//@phpcs:ignore
 		foreach($index_settings as $index_name=>$index_param){
 
-			$str_param=implode(",",$index_param['param']);
+			//$str_param=implode(",",$index_param['param']);
+
+			//$query_result[$pfx][$index_name]=array();
+			$param_count=count($index_param['param'])-1;
+			//$query_result[$pfx][$index_name]['param:count']=$param_count;
+			$str_param="";
+			$prepare_arr=array();
+
+            array_push($prepare_arr,$pfx);
+			array_push($prepare_arr,$index_name);
+			foreach($index_param['param'] as $pos=>$val){
+				array_push($prepare_arr,$val);
+			}
+
+			$param_prepare_str="";
+			for($i=0;$i<=$param_count;$i++){
+				$param_prepare_str.="%i,";
+
+			}
+			$param_prepare_str=substr($param_prepare_str,0,strlen($param_prepare_str)-1);
+			//$query_result[$pfx][$index_name]['param:str']=$param_prepare_str;
+			//$query_result[$pfx][$index_name]['param:str:val']=$str_param;
 			$k_exs=AHSC_check_key_exists($index_name,$table_name);
+
+			/*switch ($index_param['type']) {
+				case "UNIQUE KEY":
+					$query_result[$pfx][$index_name]['sql']=$wpdb->prepare("ALTER TABLE %i ADD CONSTRAINT %i UNIQUE ($param_prepare_str)",$prepare_arr);
+				case "KEY":
+					$query_result[$pfx][$index_name]['sql']=$wpdb->prepare("ALTER TABLE %i ADD KEY %i ($param_prepare_str)",$prepare_arr);
+
+			}*/
+
 			if(!$k_exs){
+
 				switch ($index_param['type']){
 					case "UNIQUE KEY":
 						//$sql="ALTER TABLE {$pfx} ADD CONSTRAINT {$index_name} UNIQUE ({$str_param}) ";
-						$wpdb->query( $wpdb->prepare("ALTER TABLE %s ADD CONSTRAINT %s UNIQUE (%s)",array( $pfx,$index_name,$str_param)));//@phpcs:ignore
+
+						$wpdb->query( $wpdb->prepare("ALTER TABLE %i ADD CONSTRAINT %i UNIQUE ($param_prepare_str)",$prepare_arr));//@phpcs:ignore
 						break;
 					case "KEY":
 						//$sql="ALTER TABLE {$pfx} ADD KEY {$index_name} ({$str_param})";
-						$wpdb->query( $wpdb->prepare("ALTER TABLE %s ADD KEY %s (%s)",array( $pfx,$index_name,$str_param)));//@phpcs:ignore
+
+						$wpdb->query( $wpdb->prepare("ALTER TABLE %i ADD KEY %i ($param_prepare_str)",$prepare_arr));//@phpcs:ignore
 						break;
 				}
-				//$query_result[$pfx][$index_name]=array();
-				//$query_result[$pfx][$index_name]['sql'] = $sql;
-				//$query_result[$pfx][$index_name]['result'] =$wpdb->query( $sql );
+
+
 			}
 		}
 	}
-/*	echo "<pre><p>===================================AGGIUNTA=====================================================</p>".
+	/*echo "<pre><p>===================================AGGIUNTA=====================================================</p>".
 	     var_export($query_result,true).
 	     "<p>================================================================================================</p></pre>";*/
 	return $query_result;
@@ -207,19 +242,19 @@ function AHSC_DBOPT_Drop_chenges(){
 			$pfx=$wpdb->prefix.substr($table_name,'3',strlen($table_name));
 			switch ($index_param['type']){
 				case "UNIQUE KEY":
-					$sql="ALTER TABLE {$pfx} DROP INDEX {$index_name}";
+					//$sql="ALTER TABLE {$pfx} DROP INDEX {$index_name}";
 
-					$wpdb->query( $wpdb->prepare("DROP INDEX %s ON %s;",array( $index_name,$pfx)));//@phpcs:ignore
+					$wpdb->query( $wpdb->prepare("DROP INDEX %i ON %i;",array( $index_name,$pfx)));//@phpcs:ignore
 
 					break;
 				case "KEY":
-					$sql="ALTER TABLE {$pfx} DROP KEY {$index_name}";
-					//$wpdb->query( $wpdb->prepare("ALTER TABLE %s DROP KEY %s;",array( $pfx,$index_name)));//@phpcs:ignore
+					//$sql="ALTER TABLE {$pfx} DROP KEY {$index_name}";
+					$wpdb->query( $wpdb->prepare("ALTER TABLE %i DROP KEY %i;",array( $pfx,$index_name)));//@phpcs:ignore
 					break;
 			}
-			$query_result[$pfx][$index_name]=array();
-			$query_result[$pfx][$index_name]['sql'] =  $sql; //$wpdb->query( $sql );
-			$query_result[$pfx][$index_name]['result'] = $wpdb->query( $sql );//@phpcs:ignore
+			//$query_result[$pfx][$index_name]=array();
+			//$query_result[$pfx][$index_name]['sql'] =  $sql; //$wpdb->query( $sql );
+			//$query_result[$pfx][$index_name]['result'] = $wpdb->query( $sql );//@phpcs:ignore
 
 		}
 	}

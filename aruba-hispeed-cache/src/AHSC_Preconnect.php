@@ -1,5 +1,7 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 if(isset(AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_dns_preconnect'])
    && AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_dns_preconnect']!=false) {
 

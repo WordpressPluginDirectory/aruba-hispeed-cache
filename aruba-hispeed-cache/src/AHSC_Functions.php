@@ -1,5 +1,7 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 use ArubaSPA\HiSpeedCache\Debug\Logger;
 
 /**

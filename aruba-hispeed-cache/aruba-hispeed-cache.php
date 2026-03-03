@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Aruba HiSpeed Cache
  * php version 5.6
@@ -13,7 +14,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Aruba HiSpeed Cache
- * Version:           3.0.3
+ * Version:           3.0.7
  * Plugin URI:        https://hosting.aruba.it/wordpress.aspx
  *
  * @phpcs:ignore Generic.Files.LineLength.TooLong
@@ -361,7 +362,7 @@ if(is_multisite()){
 
 
 add_action("wp_ajax_ahsc_enable_purge", "ahsc_ajax_enable_purge");
-add_action("wp_ajax_nopriv_ahsc_enable_purge", "ahsc_ajax_enable_purge");
+//add_action("wp_ajax_nopriv_ahsc_enable_purge", "ahsc_ajax_enable_purge");
 function ahsc_ajax_enable_purge(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )  ) {
 		$result=array();
@@ -381,7 +382,7 @@ function ahsc_ajax_enable_purge(){
 }
 
 add_action("wp_ajax_ahsc_purge_homepage_on_edit", "ahsc_ajax_purge_homepage_on_edit");
-add_action("wp_ajax_nopriv_ahsc_purge_homepage_on_edit", "ahsc_ajax_purge_homepage_on_edit");
+//add_action("wp_ajax_nopriv_ahsc_purge_homepage_on_edit", "ahsc_ajax_purge_homepage_on_edit");
 function ahsc_ajax_purge_homepage_on_edit(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' ) ) {
 
@@ -398,7 +399,7 @@ function ahsc_ajax_purge_homepage_on_edit(){
 
 
 add_action("wp_ajax_ahsc_purge_page_on_new_comment", "ahsc_ajax_purge_page_on_new_comment");
-add_action("wp_ajax_nopriv_ahsc_purge_page_on_new_comment", "ahsc_ajax_purge_page_on_new_comment");
+//add_action("wp_ajax_nopriv_ahsc_purge_page_on_new_comment", "ahsc_ajax_purge_page_on_new_comment");
 function ahsc_ajax_purge_page_on_new_comment(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -414,7 +415,7 @@ function ahsc_ajax_purge_page_on_new_comment(){
 }
 //ahsc_purge_archive_on_edit
 add_action("wp_ajax_ahsc_purge_archive_on_edit", "ahsc_ajax_purge_archive_on_edit");
-add_action("wp_ajax_nopriv_ahsc_purge_archive_on_edit", "ahsc_ajax_purge_archive_on_edit");
+//add_action("wp_ajax_nopriv_ahsc_purge_archive_on_edit", "ahsc_ajax_purge_archive_on_edit");
 function ahsc_ajax_purge_archive_on_edit(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -431,7 +432,7 @@ function ahsc_ajax_purge_archive_on_edit(){
 
 //ahsc_cache_warmer
 add_action("wp_ajax_ahsc_cache_warmer", "ahsc_ajax_cache_warmer");
-add_action("wp_ajax_nopriv_ahsc_cache_warmer", "ahsc_ajax_cache_warmer");
+//add_action("wp_ajax_nopriv_ahsc_cache_warmer", "ahsc_ajax_cache_warmer");
 function ahsc_ajax_cache_warmer(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -448,7 +449,7 @@ function ahsc_ajax_cache_warmer(){
 
 //ahsc_static_cache
 add_action("wp_ajax_ahsc_static_cache", "ahsc_ajax_static_cache");
-add_action("wp_ajax_nopriv_ahsc_static_cache", "ahsc_ajax_static_cache");
+//add_action("wp_ajax_nopriv_ahsc_static_cache", "ahsc_ajax_static_cache");
 function ahsc_ajax_static_cache(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -464,7 +465,7 @@ function ahsc_ajax_static_cache(){
 }
 //ahsc_lazy_load
 add_action("wp_ajax_ahsc_lazy_load", "ahsc_ajax_lazy_load");
-add_action("wp_ajax_nopriv_ahsc_lazy_load", "ahsc_ajax_lazy_load");
+//add_action("wp_ajax_nopriv_ahsc_lazy_load", "ahsc_ajax_lazy_load");
 function ahsc_ajax_lazy_load(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -479,7 +480,7 @@ function ahsc_ajax_lazy_load(){
 }
 //ahsc_html_optimizer
 add_action("wp_ajax_ahsc_html_optimizer", "ahsc_ajax_html_optimizer");
-add_action("wp_ajax_nopriv_ahsc_html_optimizer", "ahsc_ajax_html_optimizer");
+//add_action("wp_ajax_nopriv_ahsc_html_optimizer", "ahsc_ajax_html_optimizer");
 function ahsc_ajax_html_optimizer(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -494,7 +495,7 @@ function ahsc_ajax_html_optimizer(){
 }
 //ahsc_dns_preconnect
 add_action("wp_ajax_ahsc_dns_preconnect", "ahsc_ajax_dns_preconnect");
-add_action("wp_ajax_nopriv_ahsc_dns_preconnect", "ahsc_ajax_dns_preconnect");
+//add_action("wp_ajax_nopriv_ahsc_dns_preconnect", "ahsc_ajax_dns_preconnect");
 function ahsc_ajax_dns_preconnect(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -509,7 +510,7 @@ function ahsc_ajax_dns_preconnect(){
 }
 //ahsc_dns_preconnect_domain_list
 add_action("wp_ajax_ahsc_dns_preconnect_domain_list", "ahsc_ajax_dns_preconnect_domain_list");
-add_action("wp_ajax_nopriv_ahsc_dns_preconnect_domain_list", "ahsc_ajax_dns_preconnect_domain_list");
+//add_action("wp_ajax_nopriv_ahsc_dns_preconnect_domain_list", "ahsc_ajax_dns_preconnect_domain_list");
 function ahsc_ajax_dns_preconnect_domain_list(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -549,7 +550,7 @@ function ahsc_ajax_dns_preconnect_domain_list(){
 }
 //ahsc_enable_cron
 add_action("wp_ajax_ahsc_enable_cron", "ahsc_ajax_enable_cron");
-add_action("wp_ajax_nopriv_ahsc_enable_cron", "ahsc_ajax_enable_cron");
+//add_action("wp_ajax_nopriv_ahsc_enable_cron", "ahsc_ajax_enable_cron");
 function ahsc_ajax_enable_cron(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -576,7 +577,7 @@ function ahsc_ajax_enable_cron(){
 }
 //ahsc_cron_status
 add_action("wp_ajax_ahsc_cron_status", "ahsc_ajax_cron_status");
-add_action("wp_ajax_nopriv_ahsc_cron_status", "ahsc_ajax_cron_status");
+//add_action("wp_ajax_nopriv_ahsc_cron_status", "ahsc_ajax_cron_status");
 function ahsc_ajax_cron_status() {
 	if ( is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -592,7 +593,7 @@ function ahsc_ajax_cron_status() {
 }
 //ahsc_cron_time
 add_action("wp_ajax_ahsc_cron_time", "ahsc_ajax_cron_time");
-add_action("wp_ajax_nopriv_ahsc_cron_time", "ahsc_ajax_cron_time");
+//add_action("wp_ajax_nopriv_ahsc_cron_time", "ahsc_ajax_cron_time");
 function ahsc_ajax_cron_time(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -612,7 +613,7 @@ function ahsc_ajax_cron_time(){
 }
 //ahsc_xmlrpc_status
 add_action("wp_ajax_ahsc_xmlrpc_status", "ahsc_ajax_xmlrpc_status");
-add_action("wp_ajax_nopriv_ahsc_xmlrpc_status", "ahsc_ajax_xmlrpc_status");
+//add_action("wp_ajax_nopriv_ahsc_xmlrpc_status", "ahsc_ajax_xmlrpc_status");
 function ahsc_ajax_xmlrpc_status(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
@@ -628,9 +629,9 @@ function ahsc_ajax_xmlrpc_status(){
 
 //ahsc_reset_options();
 add_action("wp_ajax_ahsc_reset_options", "ahsc_ajax_reset_options");
-add_action("wp_ajax_nopriv_ahsc_reset_options", "ahsc_ajax_reset_options");
+//add_action("wp_ajax_nopriv_ahsc_reset_options", "ahsc_ajax_reset_options");
 function ahsc_ajax_reset_options(){
-	if(is_user_logged_in() && current_user_can( 'manage_options' )) {
+	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 
 		$result            = array();
 		$msg               = ahsc_reset_options();
@@ -643,10 +644,10 @@ function ahsc_ajax_reset_options(){
 }
 
 //ahsc_debug_status
-add_action("wp_ajax_ahsc_debug_status", "ahsc_ajax_debug_status");
+/*add_action("wp_ajax_ahsc_debug_status", "ahsc_ajax_debug_status");
 add_action("wp_ajax_nopriv_ahsc_debug_status", "ahsc_ajax_debug_status");
 function ahsc_ajax_debug_status(){
-	if(is_user_logged_in() && current_user_can( 'manage_options' )) {
+	if(is_user_logged_in() && current_user_can( 'manage_options' ) && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 		$result          = array();
 		$wpc_transformer = new HASC_WPCT( ABSPATH . 'wp-config.php' );
 		if ( $wpc_transformer->exists( 'constant', 'WP_DEBUG' ) ) {
@@ -659,11 +660,11 @@ function ahsc_ajax_debug_status(){
 		echo wp_json_encode( $result );
 		die(); 
 	}
-}
+}*/
 
 //ahsc_debug_status
 add_action("wp_ajax_ahsc_dboptimization", "ahsc_ajax_dboptimization_active");
-add_action("wp_ajax_nopriv_ahsc_dboptimization", "ahsc_ajax_dboptimization_active");
+//add_action("wp_ajax_nopriv_ahsc_dboptimization", "ahsc_ajax_dboptimization_active");
 function ahsc_ajax_dboptimization_active(){
 	if(is_user_logged_in() && current_user_can( 'manage_options' )  && isset($_POST['ahsc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash( $_POST['ahsc_nonce'])), 'ahsc-purge-cache' )) {
 

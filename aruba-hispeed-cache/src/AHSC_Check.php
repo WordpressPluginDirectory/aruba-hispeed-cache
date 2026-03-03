@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 const ACTIVE        = 'active';
 const AVAILABLE     = 'available';
 const UNAVAILABLE   = 'unavailable';

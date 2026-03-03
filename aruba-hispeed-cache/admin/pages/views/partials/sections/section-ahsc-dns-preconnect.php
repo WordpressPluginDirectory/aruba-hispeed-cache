@@ -1,3 +1,6 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+?>
 <table class="form-table ahsc-table-ahsc_dns_preconnect ahsc_dns_preconnect">
 	<tbody>
 	<tr class="ahsc_dns_preconnect">

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 global $pagenow,$ahsc_term_target;
 $ahsc_nav_purged=false;
 if( 'nav-menus.php' !== $pagenow){

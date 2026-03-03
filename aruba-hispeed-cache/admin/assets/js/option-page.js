@@ -18,7 +18,7 @@
 			this.manageCronEnable();
 			//this.manageCron();
 			this.manageXMLRpc();
-			this.manageDebugstatus();
+			//this.manageDebugstatus();
 
 			this.manageDBOptimization();
 
@@ -112,6 +112,7 @@
 
 						const data = new FormData();
 						data.append("action", "ahsc_reset_options");
+						data.append("ahsc_nonce", this.configs.ahsc_nonce);
 
 						const request = await fetch(this.configs.ahsc_ajax_url, {
 							method: "POST",
@@ -508,7 +509,7 @@ manageStaticCache(){
 		}
 
 
-		manageDebugstatus(){
+		/*manageDebugstatus(){
 			//ahsc_xmlrpc_status
 			jQuery("#ahsc_debug_status").on('click',function(event) {
 				event.preventDefault();
@@ -520,7 +521,7 @@ manageStaticCache(){
 					type : "post",
 					dataType : "json",
 					url : AHSC_OPTIONS_CONFIGS.ahsc_ajax_url,
-					data : {action: "ahsc_debug_status",status:$val},
+					data : {action: "ahsc_debug_status",status:$val,ahsc_nonce:AHSC_OPTIONS_CONFIGS.ahsc_nonce},
 					success: function(response) {
 						//console.log(response)
 						$ck.prop( "checked", $val );
@@ -528,7 +529,7 @@ manageStaticCache(){
 					}
 				});
 			});
-		}
+		}*/
 
 
 		manageDBOptimization(){
