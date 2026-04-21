@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Aruba HiSpeed Cache 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aruba-hispeed-"
 "cache\n"
-"POT-Creation-Date: 2022-03-02T16:31:41+01:00\n"
-"PO-Revision-Date: 2026-03-09 09:57+0000\n"
+"POT-Creation-Date: 2026-03-13 07:23+0100\n"
+"PO-Revision-Date: 2026-03-17 11:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -16,11 +16,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: aruba-hispeed-cache\n"
-"X-Loco-Version: 2.8.1; wp-6.8.3; php-8.4.16"
+"X-Loco-Version: 2.8.3; wp-6.9.4; php-8.4.16\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;_ex;_nx;esc_attr__;esc_attr_e;esc_attr_x;"
+"esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop;translate_nooped_plural\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: admin/pages/views/partials/sections/section-ahsc-db-optimizations.php:28
 msgid " Status:"
-msgstr "Estado:"
+msgstr " Estado:"
 
 #: aruba-hispeed-cache.php:359
 msgid ""
@@ -29,7 +33,7 @@ msgid ""
 msgstr ""
 " <b>El modo debug está activado.</b> Para mejorar la velocidad de respuesta "
 "de tu sitio web, te recomendamos desactivarlo. Esta acción supondrá la \n"
-"eliminación de los archivos .log existentes"
+"eliminación de los archivos .log existentes."
 
 #: src/AHSC_Apc.php:14
 msgid ""
@@ -37,7 +41,7 @@ msgid ""
 "functionality and retry."
 msgstr ""
 "<strong>Otro complemento utiliza caché de objetos.</strong> Desactive el "
-"complemento o la funcionalidad y vuelva a intentarlo"
+"complemento o la funcionalidad y vuelva a intentarlo."
 
 #. %s: the hosting truck url.
 #: src/AHSC_Check.php:323
@@ -104,7 +108,7 @@ msgid ""
 "deleted in any part of the website"
 msgstr ""
 "Un <strong>comentario</strong> se ingresa, se aprueba, se rechaza, se "
-"publica o se elimina en cualquier parte del sitio web."
+"publica o se elimina en cualquier parte del sitio web"
 
 #: admin/pages/views/partials/sections/section-ahsc-enable-purge.php:93
 msgid ""
@@ -132,7 +136,6 @@ msgstr ""
 "Ocurrió un error. Inténtelo de nuevo más tarde o comuníquese con el soporte."
 
 #: admin/pages/views/admin-settings-new.php:50
-#| msgid "Apc"
 msgid "APCu"
 msgstr "Apc"
 
@@ -147,14 +150,13 @@ msgid ""
 "Aruba HiSpeed Cache interfaces directly with the Aruba HiSpeed Cache service "
 "of the Aruba hosting platform and automates its management."
 msgstr ""
-"Aruba HiSpeed ​​Cache interactúa directamente con el servicio Aruba HiSpeed "
-"​​Cache de la plataforma de hosting de Aruba y automatiza su gestión."
 
 #: admin/pages/views/admin-settings-new.php:19
 msgid ""
-"Aruba HiSpeed Cache is the plugin that allows you to increase the page "
-"loading speed, optimizing cache management and improving the performance of "
-"your site, in order to offer a better browsing experience for your users."
+"Aruba HiSpeed Cache is the plugin that allows you to increase page loading "
+"speed by optimizing cache management with the support of artificial "
+"intelligence and improving your website performance, to offer a better "
+"browsing experience to your users."
 msgstr ""
 "Aruba HiSpeed Cache es el plugin que te permite aumentar la velocidad de "
 "carga de las páginas, optimizando la gestión de la caché con la ayuda de la "
@@ -162,9 +164,8 @@ msgstr ""
 "ofrecer una mejor experiencia de navegación a tus usuarios."
 
 #. Author of the plugin
-#| msgid "Aruba.it"
 msgid "arubait"
-msgstr "Aruba.it"
+msgstr ""
 
 #: admin/pages/views/partials/sections/section-ahsc-enable-purge.php:15
 msgid "Automatically clear cache"
@@ -207,7 +208,7 @@ msgstr "Caché purgado."
 
 #: admin/pages/views/partials/sections/section-ahsc-service-status.php:9
 msgid "Cache Status "
-msgstr "Estado de caché"
+msgstr "Estado de caché "
 
 #: admin/pages/views/admin-settings-new.php:41
 #: admin/pages/views/partials/sections/section-ahsc-cdn-status.php:14
@@ -234,7 +235,7 @@ msgstr "Debug"
 
 #: aruba-hispeed-cache.php:384
 msgid "debug mode has been disabled"
-msgstr "El modo de debug ha sido deshabilitado"
+msgstr "el modo de debug ha sido deshabilitado"
 
 #: aruba-hispeed-cache.php:359
 msgid "Disable Debugging"
@@ -249,9 +250,8 @@ msgid "Disabled"
 msgstr "Desactivado"
 
 #: admin/pages/views/partials/sections/section-ahsc-dns-preconnect.php:14
-#| msgid "DNS Prefetch and Preconnect:"
 msgid "DNS Prefetch and Preconnect"
-msgstr "DNS Prefetch and Preconnect:"
+msgstr "DNS Prefetch and Preconnect"
 
 #: admin/pages/views/partials/sections/section-ahsc-dns-preconnect.php:18
 #: admin/pages/views/partials/sections/section-ahsc-dns-preconnect.php:22
@@ -271,14 +271,13 @@ msgstr "DNS Prefetch and Preconnect lista de dominios."
 #: admin/pages/views/partials/sections/section-ahsc-enable-purge.php:21
 #: admin/pages/views/partials/sections/section-ahsc-enable-purge.php:27
 msgid "Enable automatic cache clearing "
-msgstr "Habilitar el borrado automático de caché"
+msgstr "Habilitar el borrado automático de caché "
 
 #: admin/pages/views/partials/sections/section-ahsc-cache-warmer.php:30
 msgid "Enable cache preload"
 msgstr "Habilitar la precarga de caché"
 
 #: admin/pages/views/partials/sections/section-ahsc-dns-preconnect.php:29
-#| msgid "DNS Prefetch and Preconnect for external domain resources"
 msgid "Enable DNS Prefetch and Preconnect for external domain resources"
 msgstr "DNS Prefetch and Preconnect para recursos de dominio externo"
 
@@ -292,7 +291,7 @@ msgstr "Habilitar caché de objetos"
 
 #: admin/pages/views/partials/sections/section-ahsc-lazy-load.php:29
 msgid "Enable optimization of image loading"
-msgstr "Habilitar la optimización de la carga de imágenes."
+msgstr "Habilitar la optimización de la carga de imágenes"
 
 #: admin/pages/views/partials/sections/section-ahsc-enable-cron.php:29
 msgid "Enable Wp-Cron"
@@ -315,6 +314,12 @@ msgstr ""
 msgid "Expired transient purged."
 msgstr "Transient caducado purgado."
 
+#: Debug/views/partials/admin-tab-debug.php:30
+msgid ""
+"File not found. The log file is not created, or is removed automatically, if "
+"the WordPress debugging feature is not enabled."
+msgstr ""
+
 #: admin/pages/views/partials/sections/section-ahsc-cron-status.php:41
 msgid "Frequency of execution"
 msgstr "Frecuencia de ejecución"
@@ -325,11 +330,11 @@ msgstr "Frecuencia de trabajos"
 
 #. URI of the plugin
 msgid "https://hosting.aruba.it/wordpress.aspx"
-msgstr "https://hosting.aruba.it/wordpress.aspx"
+msgstr ""
 
 #. Author URI of the plugin
 msgid "https://www.aruba.it/"
-msgstr "https://www.aruba.it/"
+msgstr ""
 
 #: admin/pages/views/partials/sections/section-ahsc-lazy-load.php:18
 #: admin/pages/views/partials/sections/section-ahsc-lazy-load.php:22
@@ -424,7 +429,7 @@ msgstr "Configuración original restaurada."
 
 #: admin/pages/views/admin-settings-new.php:40
 msgid "Performance"
-msgstr "el rendimiento"
+msgstr "El rendimiento"
 
 #: admin/AHSC_Admin_Bar.php:37 admin/AHSC_Admin_Bar.php:105
 msgid "Purge Cache"
@@ -439,9 +444,12 @@ msgid "Purge Expired Transient"
 msgstr "Purga caducada Transient"
 
 #: admin/AHSC_Admin_Bar.php:32 admin/AHSC_Admin_Bar.php:102
-#| msgid "Purge the page cache"
 msgid "Purge page cache"
 msgstr "Borrar caché de la página"
+
+#: Debug/views/partials/admin-tab-debug.php:15
+msgid "Purging Log Actions"
+msgstr ""
 
 #: admin/pages/views/partials/sections/section-ahsc-html-optimizer.php:18
 #: admin/pages/views/partials/sections/section-ahsc-html-optimizer.php:22
@@ -485,6 +493,10 @@ msgstr ""
 "artículos y páginas, se ejecutarán en el momento requerido, reemplazando "
 "cualquier fecha y hora existente programada en WordPress."
 
+#: Debug/views/partials/admin-tab-debug.php:35
+msgid "Service check request headers."
+msgstr ""
+
 #: admin/pages/views/partials/sections/section-ahsc-cron-status.php:54
 msgid "Set the time interval after which the activity should be repeated"
 msgstr ""
@@ -512,7 +524,6 @@ msgid "Sorry, Aruba HiSpeed Cache requires WordPress %s or higher."
 msgstr "Lo sentimos, Aruba HiSpeed ​​Cache requiere WordPress %s o superior."
 
 #: admin/pages/AHSC_Settings.php:12
-#| msgid "Sorry, you need to be an administrator to use Aruba HiSpeed Cache."
 msgid "Sorry, you need to be an administrator to use HiSpeed Cache."
 msgstr ""
 "Lo sentimos mucho, tienes que ser administrador para usar Aruba HiSpeed "

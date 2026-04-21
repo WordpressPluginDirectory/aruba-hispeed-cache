@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Aruba HiSpeed Cache 0.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aruba-hispeed-"
 "cache\n"
-"POT-Creation-Date: 2022-03-02T16:31:41+01:00\n"
-"PO-Revision-Date: 2026-03-09 09:57+0000\n"
+"POT-Creation-Date: 2026-03-13 07:11+0100\n"
+"PO-Revision-Date: 2026-03-17 11:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italiano\n"
 "Language: it_IT\n"
@@ -19,8 +19,8 @@ msgstr ""
 "esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop;translate_nooped_plural\n"
 "X-Domain: aruba-hispeed-cache\n"
 "X-Poedit-Basepath: ..\n"
+"X-Loco-Version: 2.8.3; wp-6.9.4; php-8.4.16\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Loco-Version: 2.8.1; wp-6.8.3; php-8.4.16"
 
 #: admin/pages/views/partials/sections/section-ahsc-db-optimizations.php:28
 msgid " Status:"
@@ -135,7 +135,6 @@ msgid "An error occurred. Please try again later or contact support."
 msgstr "Si è verificato un errore. Riprova più tardi o contatta l'assistenza."
 
 #: admin/pages/views/admin-settings-new.php:50
-#| msgid "Apc"
 msgid "APCu"
 msgstr "Apc"
 
@@ -150,24 +149,22 @@ msgid ""
 "Aruba HiSpeed Cache interfaces directly with the Aruba HiSpeed Cache service "
 "of the Aruba hosting platform and automates its management."
 msgstr ""
-"Aruba HiSpeed ​​Cache si interfaccia direttamente con il servizio Aruba "
-"HiSpeed ​​Cache della piattaforma hosting Aruba e ne automatizza la gestione."
 
 #: admin/pages/views/admin-settings-new.php:19
 msgid ""
-"Aruba HiSpeed Cache is the plugin that allows you to increase the page "
-"loading speed, optimizing cache management and improving the performance of "
-"your site, in order to offer a better browsing experience for your users."
+"Aruba HiSpeed Cache is the plugin that allows you to increase page loading "
+"speed by optimizing cache management with the support of artificial "
+"intelligence and improving your website performance, to offer a better "
+"browsing experience to your users."
 msgstr ""
 "Aruba HiSpeed Cache è il plugin che ti permette di aumentare la velocità di "
 "caricamento delle pagine, ottimizzando la gestione della cache con il "
 "supporto dell'intelligenza artificiale e migliorando le prestazioni del tuo "
-"sito, per offrire una migliore esperienza di navigazione ai tuoi utenti."
+"sito, per offrire una migliore esperienza di navigazione ai tuoi utenti"
 
 #. Author of the plugin
-#| msgid "Aruba.it"
 msgid "arubait"
-msgstr "Aruba.it"
+msgstr ""
 
 #: admin/pages/views/partials/sections/section-ahsc-enable-purge.php:15
 msgid "Automatically clear cache"
@@ -252,7 +249,6 @@ msgid "Disabled"
 msgstr "Disabilitato"
 
 #: admin/pages/views/partials/sections/section-ahsc-dns-preconnect.php:14
-#| msgid "DNS Prefetch and Preconnect:"
 msgid "DNS Prefetch and Preconnect"
 msgstr "DNS Prefetch and Preconnect:"
 
@@ -281,7 +277,6 @@ msgid "Enable cache preload"
 msgstr "Abilita il precarico della cache"
 
 #: admin/pages/views/partials/sections/section-ahsc-dns-preconnect.php:29
-#| msgid "DNS Prefetch and Preconnect for external domain resources"
 msgid "Enable DNS Prefetch and Preconnect for external domain resources"
 msgstr " DNS Prefetch and Preconnect  per risorse di dominio esterne"
 
@@ -318,6 +313,12 @@ msgstr ""
 msgid "Expired transient purged."
 msgstr "Eliminazione temporanea scaduta."
 
+#: Debug/views/partials/admin-tab-debug.php:30
+msgid ""
+"File not found. The log file is not created, or is removed automatically, if "
+"the WordPress debugging feature is not enabled."
+msgstr ""
+
 #: admin/pages/views/partials/sections/section-ahsc-cron-status.php:41
 msgid "Frequency of execution"
 msgstr "Frequenza di esecuzione"
@@ -328,11 +329,11 @@ msgstr "Frequenza dei lavori"
 
 #. URI of the plugin
 msgid "https://hosting.aruba.it/wordpress.aspx"
-msgstr "https://hosting.aruba.it/wordpress.aspx"
+msgstr ""
 
 #. Author URI of the plugin
 msgid "https://www.aruba.it/"
-msgstr "https://www.aruba.it/"
+msgstr ""
 
 #: admin/pages/views/partials/sections/section-ahsc-lazy-load.php:18
 #: admin/pages/views/partials/sections/section-ahsc-lazy-load.php:22
@@ -442,9 +443,12 @@ msgid "Purge Expired Transient"
 msgstr "Elimina transient scaduto"
 
 #: admin/AHSC_Admin_Bar.php:32 admin/AHSC_Admin_Bar.php:102
-#| msgid "Purge the page cache"
 msgid "Purge page cache"
 msgstr "Cancella la cache della pagina"
+
+#: Debug/views/partials/admin-tab-debug.php:15
+msgid "Purging Log Actions"
+msgstr ""
 
 #: admin/pages/views/partials/sections/section-ahsc-html-optimizer.php:18
 #: admin/pages/views/partials/sections/section-ahsc-html-optimizer.php:22
@@ -489,6 +493,10 @@ msgstr ""
 "articoli e pagine, questi verranno eseguiti all'orario richiesto, "
 "sostituendo qualsiasi data e ora pianificate su WordPress."
 
+#: Debug/views/partials/admin-tab-debug.php:35
+msgid "Service check request headers."
+msgstr ""
+
 #: admin/pages/views/partials/sections/section-ahsc-cron-status.php:54
 msgid "Set the time interval after which the activity should be repeated"
 msgstr ""
@@ -518,7 +526,6 @@ msgstr ""
 "Spiacenti, Aruba HiSpeed ​​Cache richiede WordPress %s o versione successiva."
 
 #: admin/pages/AHSC_Settings.php:12
-#| msgid "Sorry, you need to be an administrator to use Aruba HiSpeed Cache."
 msgid "Sorry, you need to be an administrator to use HiSpeed Cache."
 msgstr ""
 "Ci dispiace, ma devi essere un amministratore per usare Aruba HiSpeed Cache."

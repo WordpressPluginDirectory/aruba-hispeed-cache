@@ -5,34 +5,54 @@ if ( ! defined( 'ABSPATH' ) ) {
 use ArubaSPA\HiSpeedCache\Debug\Logger;
 
 /**
-  * operation at plugin activation
+ * operation at plugin activation
  * @return void
  */
 function AHSC_activation( ) {
-	// Get the option.
-	$check=AHSC_check();
-	if(!$check['is_aruba_server']){
-		AHSC_deactivate_me();
-	    wp_die( esc_attr(ahsc_get_check_notice($check)), 'Aruba HiSpeed Cache dependency check', array( 'back_link' => true ) );
-	}else{
-	  $options = AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS'];
-	  if ( ! $options ) {
-		  $options = array_map(
-			  function( $opt ) {
-				return $opt['default'];
-			  },
-			AHSC_OPTIONS_LIST_DEFAULT
-		  );
-	  }
-	  \update_site_option( AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS_NAME'] , $options );
-	  \update_site_option( 'aruba_hispeed_cache_version', AHSC_CONSTANT['ARUBA_HISPEED_CACHE_VERSION']);
+	// controllo la presenza del wp-cli.
+	$is_cli = (defined('WP_CLI') && WP_CLI);
+   // Controllo se è una richiesta HTTP reale (admin)
+	$is_admin_ui = (
+		isset($_SERVER['REQUEST_METHOD']) &&
+		is_admin() &&
+		isset($_SERVER['REQUEST_URI']) &&
+		strpos(sanitize_url( wp_unslash($_SERVER['REQUEST_URI'])), 'plugins.php') !== false
+	);
 
-		AHSC_remove_htaccess();
-		if(array_key_exists('ahsc_static_cache',AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS'])){
-			if(isset(AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_static_cache'])){
-				if(AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_static_cache']){
-					AHSC_edit_htaccess();
-				}
+	if ($is_cli) {
+		// attivazione
+		AHSC_activation_operation();
+	} else{
+		if ($is_admin_ui) {
+			$check = AHSC_check();
+			if ( ! $check['is_aruba_server'] ) {
+				AHSC_deactivate_me();
+				wp_die( esc_attr( ahsc_get_check_notice( $check ) ), 'Aruba HiSpeed Cache dependency check', array( 'back_link' => true ) );
+			} else {
+				AHSC_activation_operation();
+			}
+		}
+	}
+}
+
+function AHSC_activation_operation(){
+	$options = AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS'];
+	if ( ! $options ) {
+		$options = array_map(
+			function( $opt ) {
+				return $opt['default'];
+			},
+			AHSC_OPTIONS_LIST_DEFAULT
+		);
+	}
+	\update_site_option( AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS_NAME'] , $options );
+	\update_site_option( 'aruba_hispeed_cache_version', AHSC_CONSTANT['ARUBA_HISPEED_CACHE_VERSION']);
+
+	AHSC_remove_htaccess();
+	if(array_key_exists('ahsc_static_cache',AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS'])){
+		if(isset(AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_static_cache'])){
+			if(AHSC_CONSTANT['ARUBA_HISPEED_CACHE_OPTIONS']['ahsc_static_cache']){
+				AHSC_edit_htaccess();
 			}
 		}
 	}
@@ -46,6 +66,11 @@ function AHSC_deactivation(  ) {
 	\delete_site_option( 'aruba_hispeed_cache_options' );
 	\delete_site_option( 'aruba_hispeed_cache_version');
 	AHSC_remove_htaccess();
+	$file   = WP_CONTENT_DIR . '/object-cache.php';
+	if ( file_exists( $file ) ) {
+		// phpcs:ignore
+		@unlink( $file );
+	}
 }
 /**
  * operation at plugin check requirement
@@ -393,13 +418,18 @@ if ( ! \function_exists('ahsc_check_debug_status' ) ) {
 
 	function ahsc_check_debug_status(){
 		$ahsc_debug_status=false;
-		$wpc_transformer = new HASC_WPCT(  ABSPATH . 'wp-config.php' );
-		if ( $wpc_transformer->exists( 'constant', 'WP_DEBUG' ) ||  $wpc_transformer->exists( 'constant', 'WP_DEBUG_LOG' ) ) {
-			$ahsc_db= filter_var($wpc_transformer->get_value('constant','WP_DEBUG'), FILTER_VALIDATE_BOOLEAN);
-			$ahsc_dbl= filter_var($wpc_transformer->get_value('constant','WP_DEBUG_LOG'), FILTER_VALIDATE_BOOLEAN);
-		  if($ahsc_db||$ahsc_dbl ){
+		$wpc_transformer = new HASC_WPCT(  ABSPATH . 'wp-config.php', true );
+		$ahsc_db = false;
+		$ahsc_dbl = false;
+		if ($wpc_transformer->exists( 'constant', 'WP_DEBUG' )) {
+			$ahsc_db = filter_var($wpc_transformer->get_value('constant','WP_DEBUG'), FILTER_VALIDATE_BOOLEAN);
+		}
+		if ($wpc_transformer->exists( 'constant', 'WP_DEBUG_LOG' )) {
+			$ahsc_dbl = filter_var($wpc_transformer->get_value('constant','WP_DEBUG_LOG'), FILTER_VALIDATE_BOOLEAN);
+		}
+		if($ahsc_db || $ahsc_dbl ){
 			$ahsc_debug_status=true;
-		  }
+
 		}
 		return $ahsc_debug_status;
 	}
